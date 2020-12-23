@@ -1,2 +1,2 @@
 # dDrops
- Plugin pozwalający na dodanie dodatkowych dropów z kamienia.
+This Minecraft plugin allows to add custom drops from breaking stone.
