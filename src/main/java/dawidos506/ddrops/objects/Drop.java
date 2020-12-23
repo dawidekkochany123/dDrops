@@ -14,4 +14,15 @@ public class Drop {
         this.chance = chance;
     }
 
+    public ItemStack getDrop() {
+        return drop;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public double getChance() {
+        return chance;
+    }
 }

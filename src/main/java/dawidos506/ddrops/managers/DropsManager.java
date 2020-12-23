@@ -1,5 +1,6 @@
 package dawidos506.ddrops.managers;
 
+import dawidos506.ddrops.Main;
 import dawidos506.ddrops.objects.Drop;
 import dawidos506.ddrops.utils.ItemBuilder;
 import org.bukkit.Material;
@@ -10,15 +11,11 @@ import java.util.List;
 
 public class DropsManager {
 
+    private Main pl = Main.getPlugin(Main.class);
     private FileManager fileManager;
-
-    public List<Drop> drops = new ArrayList<>();
 
     public DropsManager() {
         fileManager = new FileManager();
-        if(fileManager == null) {
-            System.out.println("fnull");
-        }
     }
 
     public void load() {
@@ -27,13 +24,9 @@ public class DropsManager {
             if(dropsYml.getConfigurationSection("drops") != null) {
                 for(String s : dropsYml.getConfigurationSection("drops").getKeys(false)) {
                     Drop drop = new Drop(new ItemBuilder(Material.getMaterial(s), 1).build(), dropsYml.getInt("drops." + s + ".amount"), dropsYml.getDouble("drops." + s + ".chance"));
-                    drops.add(drop);
+                    pl.drops.add(drop);
                 }
             }
         }
-        else {
-            System.out.println("null");
-        }
     }
-
 }
