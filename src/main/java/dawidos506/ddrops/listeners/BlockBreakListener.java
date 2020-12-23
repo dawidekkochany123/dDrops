@@ -29,11 +29,13 @@ public class BlockBreakListener implements Listener {
             if(block.getType().equals(Material.STONE)) {
                 double random = ThreadLocalRandom.current().nextDouble(0, 100);
                 for(Drop d : pl.getDrops()) {
-                    if(random <= d.getChance()) {
-                        ItemStack drop = d.getDrop();
-                        drop.setAmount(d.getAmount());
-                        p.getWorld().dropItemNaturally(block.getLocation(), drop);
-                        p.sendMessage("§4Udalo ci sie wydropic " + d.getName());
+                    if(block.getY() >= d.getMinY() && block.getY() <= d.getMaxY()) {
+                        if(random <= d.getChance()) {
+                            ItemStack drop = d.getDrop();
+                            drop.setAmount(d.getAmount());
+                            p.getWorld().dropItemNaturally(block.getLocation(), drop);
+                            p.sendMessage("§4Udalo ci sie wydropic " + d.getName());
+                        }
                     }
                 }
             }

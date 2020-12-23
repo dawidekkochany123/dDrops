@@ -2,4 +2,12 @@ drops:
   IRON_INGOT:
     amount: 1
     chance: 50.0
+    name: 'Zelazo'
+    minY: 0
+    maxY: 255
+  DIAMOND:
+    amount: 1
+    chance: 25.0
     name: 'Diament'
+    minY: 0
+    maxY: 60
