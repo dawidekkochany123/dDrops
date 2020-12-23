@@ -23,7 +23,7 @@ public class DropsManager {
         if(dropsYml != null) {
             if(dropsYml.getConfigurationSection("drops") != null) {
                 for(String s : dropsYml.getConfigurationSection("drops").getKeys(false)) {
-                    Drop drop = new Drop(new ItemBuilder(Material.getMaterial(s), 1).build(), dropsYml.getInt("drops." + s + ".amount"), dropsYml.getDouble("drops." + s + ".chance"));
+                    Drop drop = new Drop(new ItemBuilder(Material.getMaterial(s), 1).build(), dropsYml.getInt("drops." + s + ".amount"), dropsYml.getDouble("drops." + s + ".chance"), dropsYml.getString("drops."+s+".name"));
                     pl.drops.add(drop);
                 }
             }

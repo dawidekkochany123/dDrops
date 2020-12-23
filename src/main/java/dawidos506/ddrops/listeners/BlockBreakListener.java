@@ -33,7 +33,7 @@ public class BlockBreakListener implements Listener {
                         ItemStack drop = d.getDrop();
                         drop.setAmount(d.getAmount());
                         p.getWorld().dropItemNaturally(block.getLocation(), drop);
-                        p.sendMessage("§4Udalo ci sie wydropic " + drop.getType().name());
+                        p.sendMessage("§4Udalo ci sie wydropic " + d.getName());
                     }
                 }
             }
