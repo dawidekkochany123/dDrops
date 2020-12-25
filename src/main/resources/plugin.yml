@@ -1,8 +1,11 @@
 name: dDrops
-version: 1.1
+version: 1.2
 main: dawidos506.ddrops.Main
 api-version: 1.16
 prefix: dDrops
 authors: [ dawidos506 ]
 description: Plugin pozwalający na dodanie dodatkowych dropów z kamienia.
 website: https://github.com/dawidekkochany123
+
+commands:
+  drop:

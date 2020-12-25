@@ -39,4 +39,16 @@ public class User {
         return inv;
     }
 
+    public void setMined(int mined) {
+        this.mined = mined;
+    }
+    public void setMsg(boolean msg) {
+        this.msg = msg;
+    }
+    public void setCobble(boolean cobble) {
+        this.cobble = cobble;
+    }
+    public void setInv(boolean inv) {
+        this.inv = inv;
+    }
 }

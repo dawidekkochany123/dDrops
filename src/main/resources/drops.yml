@@ -1,11 +1,13 @@
 drops:
   IRON_INGOT:
+    id: 1
     amount: 1
     chance: 50.0
     name: 'Zelazo'
     minY: 0
     maxY: 255
   DIAMOND:
+    id: 2
     amount: 1
     chance: 25.0
     name: 'Diament'
