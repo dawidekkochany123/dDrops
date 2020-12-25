@@ -6,6 +6,8 @@ drops:
     name: 'Zelazo'
     minY: 0
     maxY: 255
+    exp: 10
+    dExp: 15
   DIAMOND:
     id: 2
     amount: 1
@@ -13,3 +15,5 @@ drops:
     name: 'Diament'
     minY: 0
     maxY: 60
+    exp: 15
+    dExp: 25

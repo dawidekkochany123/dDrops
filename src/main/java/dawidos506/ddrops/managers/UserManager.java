@@ -21,8 +21,10 @@ public class UserManager {
         YamlConfiguration usersYml = fileManager.getUsersYml();
         if(usersYml != null) {
             for(String s : usersYml.getKeys(false)) {
-                User user = new User(UUID.fromString(s), usersYml.getString(s+".nick"), usersYml.getInt(s+".mined"), usersYml.getBoolean(s+".msg"), usersYml.getBoolean(s+".cobble"), usersYml.getBoolean(s+".inv"));
-                pl.users.add(user);
+                if(s.contains("-")) {
+                    User user = new User(UUID.fromString(s), usersYml.getString(s+".nick"), usersYml.getInt(s+".mined"), usersYml.getBoolean(s+".msg"), usersYml.getBoolean(s+".cobble"), usersYml.getBoolean(s+".inv"), usersYml.getInt(s+".level"), usersYml.getInt(s+".experience"));
+                    pl.users.add(user);
+                }
             }
         }
         else {
@@ -39,6 +41,8 @@ public class UserManager {
             usersYml.set(u.getUuid()+".msg", u.isMsg());
             usersYml.set(u.getUuid()+".cobble", u.isCobble());
             usersYml.set(u.getUuid()+".inv", u.isInv());
+            usersYml.set(u.getUuid()+".level", u.getLevel());
+            usersYml.set(u.getUuid()+".experience", u.getExperience());
         }
         try {
             usersYml.save(fileManager.getUsersFile());
@@ -49,7 +53,7 @@ public class UserManager {
 
     public void create(UUID uuid) {
         YamlConfiguration usersYml = fileManager.getUsersYml();
-        User user = new User(uuid, Bukkit.getOfflinePlayer(uuid).getName(), 0, true, true, false);
+        User user = new User(uuid, Bukkit.getOfflinePlayer(uuid).getName(), 0, true, true, false, 1, 0);
         pl.users.add(user);
         save();
     }
@@ -70,6 +74,26 @@ public class UserManager {
             }
         }
         return false;
+    }
+
+    public void addExp(UUID uuid, int exp) {
+        User u = get(uuid);
+        u.setExperience(u.getExperience()+exp);
+        int temp = u.getLevel()*u.getLevel()*1000;
+        if(u.getExperience() >= temp) {
+            u.setExperience(u.getExperience()-temp);
+            levelUp(uuid);
+        }
+    }
+
+    public void levelUp(UUID uuid) {
+        User u = get(uuid);
+        u.setLevel(u.getLevel()+1);
+    }
+
+    public void addMined(UUID uuid) {
+        User u = get(uuid);
+        u.setMined(u.getMined()+1);
     }
 
 }

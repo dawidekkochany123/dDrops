@@ -28,7 +28,7 @@ public class GuiSettings implements Listener {
     private Main pl = Main.getPlugin(Main.class);
     private UserManager userManager;
 
-    private Inventory eq = Bukkit.createInventory(null, 54, ChatUtil.fixColor("§c&ldDrops&c - Ustawienia"));
+    private Inventory eq = Bukkit.createInventory(null, 54, ChatUtil.fixColor("&c&ldDrops&c - Ustawienia"));
 
     public void openGui(UUID uuid) {
         userManager = new UserManager();

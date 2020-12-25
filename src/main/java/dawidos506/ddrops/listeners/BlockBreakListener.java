@@ -35,6 +35,7 @@ public class BlockBreakListener implements Listener {
         if(p.getGameMode().equals(GameMode.SURVIVAL)) {
             if(block.getType().equals(Material.STONE)) {
                 double random = ThreadLocalRandom.current().nextDouble(0, 100);
+                userManager.addMined(p.getUniqueId());
 
 
                 if(!user.isCobble()) {
@@ -62,6 +63,8 @@ public class BlockBreakListener implements Listener {
                             if(user.isMsg()) {
                                 p.sendMessage(ChatUtil.fixColor("&bUdalo ci sie wydropic " + d.getName() + "&b!"));
                             }
+                            p.giveExp(d.getExp());
+                            userManager.addExp(p.getUniqueId(), d.getdExp());
                         }
                     }
                 }
