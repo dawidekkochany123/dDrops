@@ -1,5 +1,8 @@
 package dawidos506.ddrops;
 
+import dawidos506.ddrops.commands.CommandDrop;
+import dawidos506.ddrops.guis.GuiMain;
+import dawidos506.ddrops.guis.GuiSettings;
 import dawidos506.ddrops.listeners.BlockBreakListener;
 import dawidos506.ddrops.listeners.PlayerJoinListener;
 import dawidos506.ddrops.managers.DropsManager;
@@ -34,10 +37,16 @@ public final class Main extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
+        getServer().getPluginManager().registerEvents(new GuiMain(), this);
+        getServer().getPluginManager().registerEvents(new GuiSettings(), this);
+
+        getCommand("drop").setExecutor(new CommandDrop());
     }
 
     @Override
-    public void onDisable() {}
+    public void onDisable() {
+        userManager.save();
+    }
 
     public List<Drop> getDrops() {
         return drops;

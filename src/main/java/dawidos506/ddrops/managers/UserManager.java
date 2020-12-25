@@ -54,8 +54,16 @@ public class UserManager {
         save();
     }
 
+    public User get(UUID uuid) {
+        for(User u : pl.getUsers()) {
+            if(u.getUuid().equals(uuid)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public boolean exists(UUID uuid) {
-        YamlConfiguration usersYml = fileManager.getUsersYml();
         for(User u : pl.getUsers()) {
             if(u.getUuid().equals(uuid)) {
                 return true;
