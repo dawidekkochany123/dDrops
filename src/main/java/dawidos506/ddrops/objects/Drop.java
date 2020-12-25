@@ -11,8 +11,10 @@ public class Drop {
     public String name;
     public int minY;
     public int maxY;
+    public int exp;
+    public int dExp;
 
-    public Drop(ItemStack drop, int id, int amount, double chance, String name, int minY, int maxY) {
+    public Drop(ItemStack drop, int id, int amount, double chance, String name, int minY, int maxY, int exp, int dExp) {
         this.drop = drop;
         this.id = id;
         this.amount = amount;
@@ -20,6 +22,8 @@ public class Drop {
         this.name = name;
         this.minY = minY;
         this.maxY = maxY;
+        this.exp = exp;
+        this.dExp = dExp;
     }
 
     public ItemStack getDrop() {
@@ -43,5 +47,10 @@ public class Drop {
     public int getMaxY() {
         return maxY;
     }
-
+    public int getExp() {
+        return exp;
+    }
+    public int getdExp() {
+        return dExp;
+    }
 }

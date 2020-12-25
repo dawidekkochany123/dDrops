@@ -10,14 +10,18 @@ public class User {
     public boolean msg;
     public boolean cobble;
     public boolean inv;
+    public int level;
+    public int experience;
 
-    public User(UUID uuid, String nick, int mined, boolean msg, boolean cobble, boolean inv) {
+    public User(UUID uuid, String nick, int mined, boolean msg, boolean cobble, boolean inv, int level, int experience) {
         this.uuid = uuid;
         this.nick = nick;
         this.mined = mined;
         this.msg = msg;
         this.cobble = cobble;
         this.inv = inv;
+        this.level = level;
+        this.experience = experience;
     }
 
     public UUID getUuid() {
@@ -38,6 +42,12 @@ public class User {
     public boolean isInv() {
         return inv;
     }
+    public int getLevel() {
+        return level;
+    }
+    public int getExperience() {
+        return experience;
+    }
 
     public void setMined(int mined) {
         this.mined = mined;
@@ -50,5 +60,11 @@ public class User {
     }
     public void setInv(boolean inv) {
         this.inv = inv;
+    }
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 }

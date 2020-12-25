@@ -16,8 +16,9 @@ import java.util.UUID;
 public class GuiMain implements Listener {
 
     private GuiSettings guiSettings;
+    private GuiStats guiStats;
 
-    private Inventory eq = Bukkit.createInventory(null, 54, ChatUtil.fixColor("§c&ldDrops&b           by dawidos506"));
+    private Inventory eq = Bukkit.createInventory(null, 54, ChatUtil.fixColor("&c&ldDrops&b           by dawidos506"));
 
 
     public void openGui(UUID uuid) {
@@ -36,15 +37,19 @@ public class GuiMain implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent e) {
         guiSettings = new GuiSettings();
+        guiStats = new GuiStats();
         Player p = (Player)e.getWhoClicked();
         Inventory inv = e.getClickedInventory();
         ItemStack is = e.getCurrentItem();
 
-        if(e.getView().getTitle().equals(ChatUtil.fixColor("§c&ldDrops&b           by dawidos506"))) {
+        if(e.getView().getTitle().equals(ChatUtil.fixColor("&c&ldDrops&b           by dawidos506"))) {
             e.setCancelled(true);
             if(is != null) {
                 if(is.getType().equals(Material.PAINTING)) {
                     guiSettings.openGui(p.getUniqueId());
+                }
+                else if(is.getType().equals(Material.NETHERITE_PICKAXE)) {
+                    guiStats.openGui(p.getUniqueId());
                 }
             }
         }
