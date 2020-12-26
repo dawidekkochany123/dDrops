@@ -1,9 +1,7 @@
 package dawidos506.ddrops;
 
 import dawidos506.ddrops.commands.CommandDrop;
-import dawidos506.ddrops.guis.GuiMain;
-import dawidos506.ddrops.guis.GuiSettings;
-import dawidos506.ddrops.guis.GuiStats;
+import dawidos506.ddrops.guis.*;
 import dawidos506.ddrops.listeners.BlockBreakListener;
 import dawidos506.ddrops.listeners.PlayerJoinListener;
 import dawidos506.ddrops.managers.DropsManager;
@@ -14,6 +12,7 @@ import dawidos506.ddrops.objects.User;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public final class Main extends JavaPlugin {
@@ -41,6 +40,10 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GuiMain(), this);
         getServer().getPluginManager().registerEvents(new GuiSettings(), this);
         getServer().getPluginManager().registerEvents(new GuiStats(), this);
+        getServer().getPluginManager().registerEvents(new GuiRanking(), this);
+        getServer().getPluginManager().registerEvents(new GuiAdmin(), this);
+        getServer().getPluginManager().registerEvents(new GuiRankingMined(), this);
+        getServer().getPluginManager().registerEvents(new GuiRankingLevel(), this);
 
         getCommand("drop").setExecutor(new CommandDrop());
     }

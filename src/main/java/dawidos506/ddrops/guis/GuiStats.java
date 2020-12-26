@@ -22,6 +22,7 @@ import java.util.UUID;
 public class GuiStats implements Listener {
 
     private UserManager userManager;
+    private GuiMain guiMain;
 
     private Inventory eq = Bukkit.createInventory(null, 54, ChatUtil.fixColor("&c&ldDrops&c - Statystyki"));
 
@@ -39,14 +40,22 @@ public class GuiStats implements Listener {
         eq.setItem(13, playerHead);
         eq.setItem(30, new ItemBuilder(Material.NETHERITE_PICKAXE, 1).setTitle("&bIlosc wykopanego kamienia").addLore("&7Wykopany kamien: &b" + user.getMined()).build());
         eq.setItem(32, new ItemBuilder(Material.EXPERIENCE_BOTTLE, 1).setTitle("&bPoziom gracza").addLore("&7Poziom: &b" + user.getLevel()).addLore("&7Doswiadczenie: &b" + user.getExperience()).build());
+        eq.setItem(53, new ItemBuilder(Material.ARROW, 1).setTitle("&cWroc").addLore("&7Kliknij, aby powrocic do poprzedniego menu.").build());
 
         p.openInventory(eq);
     }
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
+        guiMain = new GuiMain();
+        Player p = (Player)e.getWhoClicked();
         if(e.getView().getTitle().equals(ChatUtil.fixColor("&c&ldDrops&c - Statystyki"))) {
             e.setCancelled(true);
+            if(e.getCurrentItem() != null) {
+                if(e.getSlot() == 53) {
+                    guiMain.openGui(p.getUniqueId());
+                }
+            }
         }
     }
 
