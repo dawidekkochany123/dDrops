@@ -19,6 +19,7 @@ public class DropsManager {
     }
 
     public void load() {
+        pl.drops.clear();
         YamlConfiguration dropsYml = fileManager.getDropsYml();
         if(dropsYml != null) {
             if(dropsYml.getConfigurationSection("drops") != null) {

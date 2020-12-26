@@ -27,6 +27,7 @@ public class GuiSettings implements Listener {
 
     private Main pl = Main.getPlugin(Main.class);
     private UserManager userManager;
+    private GuiMain guiMain;
 
     private Inventory eq = Bukkit.createInventory(null, 54, ChatUtil.fixColor("&c&ldDrops&c - Ustawienia"));
 
@@ -87,6 +88,7 @@ public class GuiSettings implements Listener {
         eq.setItem(48, playerHead);
         eq.setItem(49, cobble);
         eq.setItem(50, msg);
+        eq.setItem(53, new ItemBuilder(Material.ARROW, 1).setTitle("&cWroc").addLore("&7Kliknij, aby powrocic do poprzedniego menu.").build());
 
         p.openInventory(eq);
     }
@@ -94,6 +96,7 @@ public class GuiSettings implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent e) {
         userManager = new UserManager();
+        guiMain = new GuiMain();
 
         Player p = (Player)e.getWhoClicked();
         Inventory inv = e.getClickedInventory();
@@ -103,17 +106,20 @@ public class GuiSettings implements Listener {
         if(e.getView().getTitle().equals(ChatUtil.fixColor("§c&ldDrops&c - Ustawienia"))) {
             e.setCancelled(true);
             if(is != null) {
-                if(is.getType().equals(Material.PLAYER_HEAD)) {
+                if(e.getSlot() == 48) {
                     user.setInv(!user.isInv());
                     openGui(p.getUniqueId());
                 }
-                else if(is.getType().equals(Material.COBBLESTONE)) {
+                else if(e.getSlot() == 49) {
                     user.setCobble(!user.isCobble());
                     openGui(p.getUniqueId());
                 }
-                else if(is.getType().equals(Material.OAK_SIGN)) {
+                else if(e.getSlot() == 50) {
                     user.setMsg(!user.isMsg());
                     openGui(p.getUniqueId());
+                }
+                else if(e.getSlot() == 53) {
+                    guiMain.openGui(p.getUniqueId());
                 }
             }
         }
